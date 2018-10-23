@@ -1,14 +1,13 @@
-# Rmm Services 
+# Rmm Services
 
-This project was created on IntelliJ Idea, using Spring Initializr with the following dependencies:
-* Web
-* PostgreSQL
+## Build & Run
 
-## Compilation & Run
-* Clone this repository
-* Import the project with Gradle
-* Run the project
-* Navigate to localhost:8080/hello
+To build and run the project you need to have **JDK 8** and **Git client**.
 
-## Note
-The HelloController is provided as example. After running the app and check is working properly you should delete it.
+When you have fulfilled these requirements please follow the next steps:
+
+```
+git clone https://github.com/nelsongonzalez/rmm-services-serverapp.git
+cd rmm-services-serverapp/
+./gradlew build
+```
