@@ -32,3 +32,11 @@ git clone https://github.com/nelsongonzalez/rmm-services-serverapp.git
 cd rmm-services-serverapp/
 ./gradlew build
 ```
+
+To run the application run the script follow scripts on `smart_services` database:
+
+- `src/main/resources/schema.sql`
+
+- `src/main/resources/data.sql`
+
+and then `java -jar build/libs/rmm-services-0.0.1-SNAPSHOT.jar`

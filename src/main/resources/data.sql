@@ -25,7 +25,7 @@ values (4, 2, 3.00, 1);
 insert into services_cost (id, service_id, monthly_cost, device_type_id)
 values (5, 2, 3.00, 2);
 insert into services_cost (id, service_id, monthly_cost, device_type_id)
-values (5, 2, 3.00, 3);
+values (6, 2, 3.00, 3);
 insert into services_cost (id, service_id, monthly_cost, device_type_id)
 values (7, 3, 2.00, 1);
 insert into services_cost (id, service_id, monthly_cost, device_type_id)

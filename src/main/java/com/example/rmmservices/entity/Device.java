@@ -51,12 +51,12 @@ public class Device {
         this.systemName = systemName;
     }
 
-    public void setType(DeviceType type) {
-        this.type = type;
-    }
-
     public DeviceType getType() {
         return type;
+    }
+
+    public void setType(DeviceType type) {
+        this.type = type;
     }
 
     public Customer getOwner() {

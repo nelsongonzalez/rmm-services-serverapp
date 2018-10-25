@@ -9,17 +9,17 @@ public class MonthlyBillQuery {
 
     private final List<CostPerService> explanation;
 
+    public MonthlyBillQuery(BigDecimal output, List<CostPerService> explanation) {
+        this.output = output;
+        this.explanation = explanation;
+    }
+
     public BigDecimal getOutput() {
         return output;
     }
 
     public List<CostPerService> getExplanation() {
         return explanation;
-    }
-
-    public MonthlyBillQuery(BigDecimal output, List<CostPerService> explanation) {
-        this.output = output;
-        this.explanation = explanation;
     }
 
     public static class CostPerService {
