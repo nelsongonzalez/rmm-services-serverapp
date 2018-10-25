@@ -1,8 +1,11 @@
 package com.example.rmmservices.service.bean;
 
+import io.swagger.annotations.ApiModel;
+
 import java.math.BigDecimal;
 import java.util.List;
 
+@ApiModel(description = "Monthly bill")
 public class MonthlyBillQuery {
 
     private final BigDecimal output;
