@@ -34,7 +34,7 @@ public class DeviceQueryControllerTest {
         mvc.perform(get("/customer/1/devices")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(1)));
+                .andExpect(jsonPath("$.*", hasSize(2)));
 
     }
 }

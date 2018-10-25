@@ -13,6 +13,13 @@ public class DeviceType {
 
     private String name;
 
+    public DeviceType() {
+    }
+
+    public DeviceType(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
