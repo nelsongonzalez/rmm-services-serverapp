@@ -1,14 +1,14 @@
-package com.example.rmmservices.domain;
+package com.example.rmmservices.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "customers")
 public class Customer {
 
     @Id
+    @SequenceGenerator(name = "customers_id_seq", sequenceName = "customers_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customers_id_seq")
     private Long id;
 
     private String name;

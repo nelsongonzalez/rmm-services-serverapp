@@ -13,23 +13,25 @@ import javax.ws.rs.core.MediaType;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class CustomerServiceControllerTest {
+public class DeviceTypeControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void shouldGetAllDevices() throws Exception {
-        mvc.perform(get("/customer/1/services")
+    public void shouldGetAllDeviceTypes() throws Exception {
+        mvc.perform(get("/deviceTypes")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", hasSize(0)));
+                .andExpect(jsonPath("$.*", hasSize(3)))
+                .andDo(print());
 
     }
 }

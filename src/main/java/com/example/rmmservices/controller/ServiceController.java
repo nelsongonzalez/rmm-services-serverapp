@@ -1,6 +1,6 @@
 package com.example.rmmservices.controller;
 
-import com.example.rmmservices.domain.Service;
+import com.example.rmmservices.entity.Service;
 import com.example.rmmservices.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -48,10 +48,28 @@ values (5, 4, 1.00, 3);
 insert into customers (id, name)
 values (1, 'Nelson Gonzalez');
 
-alter sequence devices_id_seq restart with 10;
-alter sequence account_services_id_seq restart with 10;
-alter sequence customers_id_seq restart with 10;
-alter sequence device_type_groups_id_seq restart with 10;
-alter sequence device_types_id_seq restart with 10;
-alter sequence services_cost_id_seq restart with 10;
-alter sequence services_id_seq restart with 10;
+insert into devices(id, system_name, device_type_id, customer_id)
+values (1, 'DEVICE01', 1, 1);
+insert into devices(id, system_name, device_type_id, customer_id)
+values (2, 'DEVICE02', 1, 1);
+insert into devices(id, system_name, device_type_id, customer_id)
+values (3, 'DEVICE03', 3, 1);
+insert into devices(id, system_name, device_type_id, customer_id)
+values (4, 'DEVICE04', 3, 1);
+insert into devices(id, system_name, device_type_id, customer_id)
+values (5, 'DEVICE05', 3, 1);
+
+insert into account_services(id, service_id, customer_id)
+values (1, 1, 1);
+insert into account_services(id, service_id, customer_id)
+values (2, 2, 1);
+insert into account_services(id, service_id, customer_id)
+values (3, 4, 1);
+
+alter sequence devices_id_seq restart with 100;
+alter sequence account_services_id_seq restart with 100;
+alter sequence customers_id_seq restart with 100;
+alter sequence device_type_groups_id_seq restart with 100;
+alter sequence device_types_id_seq restart with 100;
+alter sequence services_cost_id_seq restart with 100;
+alter sequence services_id_seq restart with 100;
