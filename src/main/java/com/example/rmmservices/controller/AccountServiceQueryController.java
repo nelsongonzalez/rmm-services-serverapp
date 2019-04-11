@@ -1,8 +1,13 @@
 package com.example.rmmservices.controller;
 
-import com.example.rmmservices.controller.bean.AccountServiceQuery;
-import com.example.rmmservices.entity.AccountService;
-import com.example.rmmservices.service.AccountServiceQueryService;
+import com.example.rmmservices.domain.AccountService;
+import com.example.rmmservices.domain.AccountService.Data;
+import com.example.rmmservices.domain.AccountServices;
+import com.example.rmmservices.domain.impl.JpaAccountServices;
+import com.example.rmmservices.repository.AccountServiceEntries;
+import com.example.rmmservices.repository.CustomerEntries;
+import com.example.rmmservices.repository.ServiceCostEntries;
+import com.example.rmmservices.repository.ServiceEntries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,17 +19,35 @@ import java.util.stream.Collectors;
 @RestController
 public class AccountServiceQueryController {
 
-    private final AccountServiceQueryService accountServiceQueryService;
+    private final ServiceEntries serviceEntries;
+
+    private final AccountServiceEntries accountServiceEntries;
+
+    private final CustomerEntries customerEntries;
+
+    private final ServiceCostEntries serviceCostEntries;
 
     @Autowired
-    public AccountServiceQueryController(AccountServiceQueryService accountServiceQueryService) {
-        this.accountServiceQueryService = accountServiceQueryService;
+    public AccountServiceQueryController(final ServiceEntries serviceEntries,
+                                         final AccountServiceEntries accountServiceEntries,
+                                         final CustomerEntries customerEntries,
+                                         final ServiceCostEntries serviceCostEntries) {
+        this.serviceEntries = serviceEntries;
+        this.accountServiceEntries = accountServiceEntries;
+        this.customerEntries = customerEntries;
+        this.serviceCostEntries = serviceCostEntries;
     }
 
     @GetMapping("/customer/{customerId}/services")
-    public List<AccountServiceQuery> get(@PathVariable Long customerId) {
-        List<AccountService> accountServices = accountServiceQueryService.get(customerId);
-        return accountServices.stream().map((s) -> new AccountServiceQuery()).collect(Collectors.toList());
+    public List<Data> get(@PathVariable final Long customerId) {
+        final AccountServices accountServices = new JpaAccountServices(serviceEntries,
+                accountServiceEntries,
+                customerEntries,
+                serviceCostEntries);
+        final List<AccountService> accountServicesList = accountServices.get(customerId);
+        return accountServicesList.stream()
+                .map(AccountService::data)
+                .collect(Collectors.toList());
     }
 
 }

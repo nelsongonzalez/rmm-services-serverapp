@@ -46,9 +46,10 @@ public class DeviceCommandControllerTest {
     @Test
     @Sql({"/schema-postgresql.sql", "/data-postgresql.sql"})
     public void testAShouldRegisterNewAccountDevice() throws Exception {
-        mvc.perform(post("/customer/1/devices/new")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"systemName\": \"MACSERVER01\", \"deviceTypeId\": 3}"))
+        mvc.perform(
+                post("/customer/1/devices/new")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"systemName\": \"MACSERVER01\", \"deviceTypeId\": 3}"))
                 .andExpect(status().isOk());
 
     }
@@ -57,9 +58,10 @@ public class DeviceCommandControllerTest {
     @Test
     @Sql({"/schema-postgresql.sql", "/data-postgresql.sql"})
     public void testBShouldUpdateAccountDevice() throws Exception {
-        mvc.perform(post("/customer/1/devices/1/update")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"systemName\": \"CHANGED_WSERVER01\", \"deviceTypeId\": 1}"))
+        mvc.perform(
+                post("/customer/1/devices/1/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"systemName\": \"CHANGED_WSERVER01\", \"deviceTypeId\": 1}"))
                 .andExpect(status().isOk());
 
     }
@@ -68,8 +70,9 @@ public class DeviceCommandControllerTest {
     @Test
     @Sql({"/schema-postgresql.sql", "/data-postgresql.sql"})
     public void testCShouldDeleteAccountDevice() throws Exception {
-        mvc.perform(post("/customer/1/devices/2/delete")
-                .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(
+                post("/customer/1/devices/2/delete")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
     }

@@ -44,8 +44,9 @@ public class ServiceControllerTest {
     @WithMockUser(value = "test")
     @Test
     public void shouldGetAllServices() throws Exception {
-        mvc.perform(get("/services")
-                .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(
+                get("/services")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(4)))
                 .andDo(print());
@@ -54,8 +55,9 @@ public class ServiceControllerTest {
 
     @Test
     public void shouldRespondUnauthorized() throws Exception {
-        mvc.perform(get("/services")
-                .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(
+                get("/services")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized())
                 .andDo(print());
 

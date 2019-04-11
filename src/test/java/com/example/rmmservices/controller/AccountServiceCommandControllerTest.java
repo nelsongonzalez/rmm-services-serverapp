@@ -46,9 +46,10 @@ public class AccountServiceCommandControllerTest {
     @Test
     @Sql({"/schema-postgresql.sql", "/data-postgresql.sql"})
     public void testAShouldRegisterNewAccountService() throws Exception {
-        mvc.perform(post("/customer/1/services/new")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"serviceId\": 4, \"customerId\": 1}"))
+        mvc.perform(
+                post("/customer/1/services/new")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"serviceId\": 4}"))
                 .andExpect(status().isOk());
 
     }
@@ -57,10 +58,11 @@ public class AccountServiceCommandControllerTest {
     @Test
     @Sql({"/schema-postgresql.sql", "/data-postgresql.sql"})
     public void testBShouldRespondeErrorWhenAccountServiceExists() throws Exception {
-        mvc.perform(post("/customer/1/services/new")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"serviceId\": 1, \"customerId\": 1}"))
-                .andExpect(status().isOk());
+        mvc.perform(
+                post("/customer/1/services/new")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"serviceId\": 1}"))
+                .andExpect(status().isBadRequest());
 
     }
 
@@ -68,8 +70,9 @@ public class AccountServiceCommandControllerTest {
     @Test
     @Sql({"/schema-postgresql.sql", "/data-postgresql.sql"})
     public void testCShouldDeleteAccountDevice() throws Exception {
-        mvc.perform(post("/customer/1/services/3/delete")
-                .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(
+                post("/customer/1/services/3/delete")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
     }

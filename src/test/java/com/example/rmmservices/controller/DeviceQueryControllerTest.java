@@ -48,8 +48,9 @@ public class DeviceQueryControllerTest {
     @Test
     @Sql({"/schema-postgresql.sql", "/data-postgresql.sql"})
     public void testAShouldGetAllAccountDevices() throws Exception {
-        mvc.perform(get("/customer/1/devices")
-                .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(
+                get("/customer/1/devices")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(2)));
 

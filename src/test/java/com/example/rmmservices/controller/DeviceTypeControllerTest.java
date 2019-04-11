@@ -44,8 +44,9 @@ public class DeviceTypeControllerTest {
     @WithMockUser(value = "test")
     @Test
     public void shouldGetAllDeviceTypes() throws Exception {
-        mvc.perform(get("/deviceTypes")
-                .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(
+                get("/deviceTypes")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.*", hasSize(3)))
                 .andDo(print());

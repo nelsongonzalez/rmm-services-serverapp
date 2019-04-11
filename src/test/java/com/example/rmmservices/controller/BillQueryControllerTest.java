@@ -46,10 +46,12 @@ public class BillQueryControllerTest {
     @Test
     @Sql({"/schema-postgresql.sql", "/cost-data-postgresql.sql"})
     public void shouldGetMonthlyBill() throws Exception {
-        mvc.perform(get("/customer/1/bill")
-                .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(
+                get("/customer/1/bill")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.output", is(71.0)))
+                .andExpect(jsonPath("$.output.amount", is(71.0)))
+                .andExpect(jsonPath("$.output.currency", is("USD")))
                 .andDo(print());
 
     }

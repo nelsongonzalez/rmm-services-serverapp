@@ -1,8 +1,13 @@
 package com.example.rmmservices.controller;
 
-import com.example.rmmservices.controller.bean.DeviceQuery;
-import com.example.rmmservices.entity.Device;
-import com.example.rmmservices.service.DeviceQueryService;
+import com.example.rmmservices.domain.Device;
+import com.example.rmmservices.domain.Device.Data;
+import com.example.rmmservices.domain.Devices;
+import com.example.rmmservices.domain.impl.JpaDevices;
+import com.example.rmmservices.repository.CustomerEntries;
+import com.example.rmmservices.repository.DeviceEntries;
+import com.example.rmmservices.repository.DeviceTypeEntries;
+import com.example.rmmservices.repository.ServiceCostEntries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,17 +19,33 @@ import java.util.stream.Collectors;
 @RestController
 public class DeviceQueryController {
 
-    private final DeviceQueryService deviceQueryService;
+    private final DeviceEntries deviceEntries;
+
+    private final DeviceTypeEntries deviceTypeEntries;
+
+    private final CustomerEntries customerEntries;
+
+    private final ServiceCostEntries serviceCostEntries;
 
     @Autowired
-    public DeviceQueryController(DeviceQueryService deviceQueryService) {
-        this.deviceQueryService = deviceQueryService;
+    public DeviceQueryController(final DeviceEntries deviceEntries,
+                                 final DeviceTypeEntries deviceTypeEntries,
+                                 final CustomerEntries customerEntries,
+                                 final ServiceCostEntries serviceCostEntries) {
+        this.deviceEntries = deviceEntries;
+        this.deviceTypeEntries = deviceTypeEntries;
+        this.customerEntries = customerEntries;
+        this.serviceCostEntries = serviceCostEntries;
     }
 
     @GetMapping("/customer/{customerId}/devices")
-    public List<DeviceQuery> get(@PathVariable Long customerId) {
-        List<Device> devices = deviceQueryService.get(customerId);
-        return devices.stream().map((d) -> new DeviceQuery()).collect(Collectors.toList());
+    public List<Data> get(@PathVariable final Long customerId) {
+        final Devices devices = new JpaDevices(deviceEntries,
+                deviceTypeEntries,
+                customerEntries,
+                serviceCostEntries);
+        final List<Device> deviceList = devices.get(customerId);
+        return deviceList.stream().map(Device::data).collect(Collectors.toList());
     }
 
 }
